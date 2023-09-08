@@ -1,4 +1,5 @@
 const express = require('express');
+const serverless = require('serverless-http')
 const app = express();
 const bodyparser = require('body-parser')
 
@@ -78,4 +79,5 @@ app.get("/bfhl", (req, res) => {
     res.send(welcome.data);
 })
 
-app.listen(3000)
+app.use('/netify/functions/app', router);
+module.exports.handler = serverless(app);
